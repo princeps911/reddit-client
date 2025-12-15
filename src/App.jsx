@@ -1,23 +1,26 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import Header from './components/Header';
+import SubredditSelector from './components/SubredditSelector';
+import PostList from './components/PostList';
+import { fakePosts, subreddits } from './data/fakePosts';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedSubreddit, setSelectedSubreddit] = useState(subreddits[0]);
+  const [posts] = useState(fakePosts); // In real app, this will come from API
 
   return (
-    <div className="App">
-      <header className="header">
-        <h1>Prince Akpobasa's Reddit Client</h1>
-        <p>Welcome! We're about to build something awesome 🚀</p>
-      </header>
-      <main>
-        <p>Your Reddit app is running locally!</p>
-        <button onClick={() => setCount(count + 1)}>
-          Count is {count}
-        </button>
+    <>
+      <Header />
+      <main className="container">
+        <SubredditSelector 
+          selectedSubreddit={selectedSubreddit}
+          onSelect={setSelectedSubreddit}
+        />
+        <PostList posts={posts} />
       </main>
-    </div>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;

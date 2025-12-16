@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { fakePosts } from '../../data/fakeposts';
+import { fakePosts } from '../../data/fakePosts';  // ← Import fake data
 
 // Async Thunk to fetch posts
 export const fetchPosts = createAsyncThunk(

@@ -1,80 +1,27 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* src/App.css - All custom styles for Prince's Reddit Client */
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 .App {
-  text-align: center;
-  padding: 2rem;
-  font-family: system-ui, sans-serif;
+  min-height: 100vh;
 }
 
-.header {
-  margin-bottom: 3rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: #ff4500; /* Reddit orange */
-}
-
-button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  margin-top: 2rem;
-}
-/* Basic responsive layout */
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
+/* Header */
 .header {
-  background: #ff4500;
+  background: #ff4500; /* Reddit orange */
   color: white;
   padding: 1rem 0;
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header .container {
@@ -83,23 +30,48 @@ button {
   align-items: center;
 }
 
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Main Content */
 main {
-  margin-top: 80px;
+  margin-top: 80px; /* Space for fixed header */
   padding: 2rem 0;
 }
 
+/* Subreddit Selector */
 .subreddit-selector {
   margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .subreddit-selector button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #ff4500;
   background: white;
+  color: #ff4500;
+  font-weight: 600;
+  border-radius: 30px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.subreddit-selector button:hover {
+  background: #ff4500;
+  color: white;
 }
 
 .subreddit-selector button.active {
@@ -107,51 +79,122 @@ main {
   color: white;
 }
 
+/* Post List */
 .post-list {
   display: grid;
   gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .post-card {
   display: flex;
   background: white;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Vote Section */
 .vote {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
   background: #f8f9fa;
   min-width: 60px;
+  gap: 0.5rem;
+}
+
+.vote button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.vote span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Thumbnail */
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .thumbnail img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+/* Content */
 .content {
   padding: 1rem;
   flex: 1;
 }
 
+.content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #1a1a1b;
+}
+
 .meta {
   font-size: 0.9rem;
   color: #666;
+  margin-bottom: 0.5rem;
 }
 
-/* Mobile */
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.actions button:hover {
+  color: #ff4500;
+}
+
+/* Responsive Mobile */
 @media (max-width: 768px) {
   .post-card {
     flex-direction: column;
   }
-  .thumbnail img {
+
+  .thumbnail {
     width: 100%;
     height: 200px;
+  }
+
+  .vote {
+    flex-direction: row;
+    padding: 0.8rem;
+    justify-content: center;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
   }
 }

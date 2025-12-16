@@ -1,6 +1,6 @@
-// src/features/posts/postsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { fakePosts } from '../../data/fakeposts';
 
 // Async Thunk to fetch posts
 export const fetchPosts = createAsyncThunk(
@@ -25,7 +25,7 @@ const postsSlice = createSlice({
     cache: {}, // Simple cache: { 'r/popular': [posts] }
   },
   reducers: {
-    setSubreddit: (state, action) => {  
+    setSubreddit: (state, action) => {
       state.selectedSubreddit = action.payload;
       // Load from cache if available
       if (state.cache[action.payload]) {
@@ -43,18 +43,26 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload;
-        // Cache the result
+        // Cache the successful result
         state.cache[state.selectedSubreddit] = action.payload;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload === 429 
-          ? 'Rate limit reached. Showing cached data or try again later.'
-          : 'Failed to load posts. Please try again.';
-        // If error, try to show cached data
+
+        // Priority: 1. Use cache → 2. Use fake posts → 3. Show error
         if (state.cache[state.selectedSubreddit]) {
           state.posts = state.cache[state.selectedSubreddit];
-          state.error = 'Showing cached posts (rate limit or network issue)';
+          state.error = 'Showing cached posts (network issue)';
+        } else if (!state.posts.length) {
+          // Fallback to fake posts (filter by subreddit if possible)
+          const fallback = fakePosts.filter(post =>
+            post.subreddit.toLowerCase() === state.selectedSubreddit.toLowerCase()
+          );
+          state.posts = fallback.length > 0 ? fallback : fakePosts;
+          state.error = 'Showing sample posts (check connection for live data)';
+          console.warn('API failed - using fake posts fallback');
+        } else {
+          state.error = 'Failed to load new posts';
         }
       });
   },

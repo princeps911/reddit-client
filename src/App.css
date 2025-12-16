@@ -285,3 +285,12 @@ padding: 4rem 1rem;
     font-size: 1.1rem;
   }
 }
+.status.info {
+  text-align: center;
+  padding: 1rem;
+  background: #e3f2fd;
+  color: #1565c0;
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 800px;
+}

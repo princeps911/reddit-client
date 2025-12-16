@@ -12,7 +12,7 @@ function App() {
   return (
     <div className={isDarkMode ? 'dark-mode' : ''}>
       <Header isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-      <main className="container">
+      <main className="container" id="m-cont">
         <SubredditSelector selectedSubreddit={selectedSubreddit} />
         <PostList />
       </main>

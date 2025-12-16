@@ -12,15 +12,16 @@ const PostList = () => {
   }, [dispatch, selectedSubreddit]);
 
   if (loading) return <p className="status">Loading posts from {selectedSubreddit}...</p>;
-  if (error) return <p className="status error">{error}</p>;
+if (posts.length === 0) return <p className="status error">No posts available.</p>;
 
-  return (
-    <div className="post-list">
-      {posts.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </div>
-  );
+return (
+  <div className="post-list">
+    {error && <p className="status info">{error}</p>}
+    {posts.map(post => (
+      <PostCard key={post.id} post={post} />
+    ))}
+  </div>
+);
 };
 
 export default PostList;

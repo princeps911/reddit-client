@@ -1,14 +1,24 @@
 import React from 'react';
-import { subreddits } from '../data/fakePosts';
+import { useDispatch } from 'react-redux';
+import { setSubreddit, fetchPosts } from '../features/posts/postsSlice';
 
-const SubredditSelector = ({ selectedSubreddit, onSelect }) => {
+const subreddits = ["r/popular", "r/reactjs", "r/javascript", "r/aww", "r/programming"];
+
+const SubredditSelector = ({ selectedSubreddit }) => {
+  const dispatch = useDispatch();
+
+  const handleSelect = (sub) => {
+    dispatch(setSubreddit(sub));
+    dispatch(fetchPosts(sub));
+  };
+
   return (
     <div className="subreddit-selector">
       {subreddits.map(sub => (
         <button
           key={sub}
           className={selectedSubreddit === sub ? 'active' : ''}
-          onClick={() => onSelect(sub)}
+          onClick={() => handleSelect(sub)}
         >
           {sub}
         </button>

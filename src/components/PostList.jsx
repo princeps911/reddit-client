@@ -1,11 +1,18 @@
-// src/components/PostList.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PostCard from './PostCard';
+import { fetchPosts } from '../features/posts/postsSlice';
 
-const PostList = ({ posts }) => {
-  if (posts.length === 0) {
-    return <p>No posts found.</p>;
-  }
+const PostList = () => {
+  const dispatch = useDispatch();
+  const { posts, loading, error, selectedSubreddit } = useSelector(state => state.posts);
+
+  useEffect(() => {
+    dispatch(fetchPosts(selectedSubreddit));
+  }, [dispatch, selectedSubreddit]);
+
+  if (loading) return <p className="status">Loading posts from {selectedSubreddit}...</p>;
+  if (error) return <p className="status error">{error}</p>;
 
   return (
     <div className="post-list">

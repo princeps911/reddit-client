@@ -1,10 +1,10 @@
-/* src/App.css - All custom styles for Prince's Reddit Client */
+/*  Fully Responsive Reddit Client */
 
 .App {
   min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -13,7 +13,7 @@
 
 /* Header */
 .header {
-  background: #ff4500; /* Reddit orange */
+  background: #ff4500;
   color: white;
   padding: 1rem 0;
   position: fixed;
@@ -21,10 +21,10 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.header .container {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,31 +35,50 @@
   font-weight: 700;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .dark-mode-toggle {
   background: none;
   border: none;
   color: white;
   font-size: 1.8rem;
   cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s;
 }
 
-/* Main Content */
+.dark-mode-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* Main */
 main {
-  margin-top: 80px; /* Space for fixed header */
+  margin-top: 90px;
   padding: 2rem 0;
 }
 
-/* Subreddit Selector */
+#m-cont{
+padding: 4rem 1rem;
+  }
+
+/* Subreddit Selector - Fully Visible on All Screens */
 .subreddit-selector {
   margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
 }
 
 .subreddit-selector button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.4rem;
   border: 2px solid #ff4500;
   background: white;
   color: #ff4500;
@@ -67,11 +86,13 @@ main {
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .subreddit-selector button:hover {
   background: #ff4500;
   color: white;
+  transform: translateY(-2px);
 }
 
 .subreddit-selector button.active {
@@ -87,22 +108,22 @@ main {
   margin: 0 auto;
 }
 
+/* Post Card */
 .post-card {
   display: flex;
   background: white;
-  border: 1px solid #ddd;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
 }
 
 .post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Vote Section */
+/* Vote */
 .vote {
   display: flex;
   flex-direction: column;
@@ -110,21 +131,26 @@ main {
   justify-content: center;
   padding: 1rem;
   background: #f8f9fa;
-  min-width: 60px;
+  min-width: 70px;
   gap: 0.5rem;
 }
 
 .vote button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  color: #666;
+  color: #888;
+  transition: color 0.3s;
+}
+
+.vote button:hover {
+  color: #ff4500;
 }
 
 .vote span {
   font-weight: bold;
-  color: #333;
+  font-size: 1.1rem;
 }
 
 /* Thumbnail */
@@ -148,8 +174,8 @@ main {
 }
 
 .content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
   line-height: 1.4;
   color: #1a1a1b;
 }
@@ -157,12 +183,7 @@ main {
 .meta {
   font-size: 0.9rem;
   color: #666;
-  margin-bottom: 0.5rem;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .actions button {
@@ -170,15 +191,60 @@ main {
   border: none;
   color: #666;
   cursor: pointer;
-  font-size: 0.9rem;
+  margin-right: 1rem;
+  font-weight: 500;
 }
 
 .actions button:hover {
   color: #ff4500;
 }
 
-/* Responsive Mobile */
+/* Dark Mode */
+.dark-mode {
+  background-color: #0d1117;
+  color: #c9d1d9;
+}
+
+.dark-mode .header {
+  background: #161b22;
+}
+
+.dark-mode .post-card {
+  background: #161b22;
+  border-color: #30363d;
+}
+
+.dark-mode .vote {
+  background: #21262d;
+}
+
+.dark-mode .subreddit-selector {
+  background: #161b22;
+}
+
+.dark-mode .content h3 {
+  color: #f0f6fc;
+}
+
+.dark-mode .meta, .dark-mode .actions button {
+  color: #8b949e;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Tablet & Mobile */
 @media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
   .post-card {
     flex-direction: column;
   }
@@ -194,7 +260,28 @@ main {
     justify-content: center;
   }
 
+  .subreddit-selector {
+    gap: 0.8rem;
+  }
+
+  .subreddit-selector button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  main {
+    margin-top: 80px;
+    padding: 1rem 0;
+  }
+
   .header h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .content h3 {
+    font-size: 1.1rem;
   }
 }

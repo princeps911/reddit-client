@@ -1,0 +1,37 @@
+{
+  "name": "Prince Akpobasa's Reddit Client",
+  "short_name": "Reddit Client",
+  "description": "A beautiful, responsive Reddit client built with React and Redux by Prince Akpobasa",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#4718ee",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/CEPSDEV_icon_x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/CEPSDEV_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/CEPSDEV_icon_x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/CEPSDEV_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

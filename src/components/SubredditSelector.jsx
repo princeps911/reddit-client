@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setSubreddit, fetchPosts } from '../features/posts/postsSlice';
+import SearchBar from './SearchBar';
 
 const subreddits = ["r/popular", "r/reactjs", "r/javascript", "r/aww", "r/programming"];
 
@@ -14,6 +15,7 @@ const SubredditSelector = ({ selectedSubreddit }) => {
 
   return (
     <div className="subreddit-selector">
+        <SearchBar />
       {subreddits.map(sub => (
         <button
           key={sub}

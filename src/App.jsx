@@ -1,10 +1,10 @@
+// src/App.jsx
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import SubredditSelector from './components/SubredditSelector';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
-import SavedPosts from './components/SavedPosts';
 import { useSelector } from 'react-redux';
 import './App.css';
 
@@ -16,7 +16,7 @@ function App() {
     <div className={isDarkMode ? 'dark-mode' : ''}>
       <Router>
         <Header isDarkMode={isDarkMode} onToggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-        <main className="container">
+        <main className="container" id="m-cont">
           <Routes>
             <Route path="/" element={
               <>
@@ -25,7 +25,6 @@ function App() {
               </>
             } />
             <Route path="/post/:postId" element={<PostDetail />} />
-            <Route path="/saved" element={<SavedPosts />} />
           </Routes>
         </main>
       </Router>

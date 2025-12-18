@@ -6,7 +6,11 @@ export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async (subreddit, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`https://www.reddit.com/r/${subreddit}.json?limit=50`);
+      const response = await axios.get(`https://www.reddit.com/${subreddit}.json?limit=50`, {
+        headers: {
+          'User-Agent': 'PrinceRedditClient/1.0 (by /u/your-reddit-username or prince.dev)'  // Change to your info
+        }
+      });
       return response.data.data.children.map(child => child.data);
     } catch (error) {
       return rejectWithValue(error.response?.status || 'Network Error');

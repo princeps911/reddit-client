@@ -285,7 +285,7 @@ padding: 4rem 1rem;
     font-size: 1.1rem;
   }
 }
-.status.info {
+.status.info, .load-more {
   text-align: center;
   padding: 1rem;
   background: #e3f2fd;
